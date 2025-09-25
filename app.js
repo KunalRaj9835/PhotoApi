@@ -15,6 +15,8 @@ const commentRoutes = require('./routes/comment.routes');
 const inquiryRoutes = require('./routes/inquiry.routes');
 const leadRoutes = require('./routes/lead.routes');
 const albumRoutes = require('./routes/album.routes');
+const kpiRoutes = require('./routes/kpi.routes');
+const reviewRoutes = require('./routes/review.routes');
 const app = express();
 
 // Connect to database
@@ -38,6 +40,8 @@ app.use('/comment', commentRoutes);
 app.use('/inquiry', inquiryRoutes);
 app.use('/lead', leadRoutes);
 app.use('/album', albumRoutes);
+app.use('/kpi', kpiRoutes);
+app.use('/review', reviewRoutes);
 console.log("User routes loaded");
 
 // Debug: Log registered routes
