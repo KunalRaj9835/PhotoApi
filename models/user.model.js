@@ -8,15 +8,7 @@ class UserModel {
     }
 
     // Create a new user/partner
-    async create(userData, file) {
-        // ✅ Expect password to already be hashed from controller
-        let aadharFileUrl = null;
-        if (file) {
-            // If saving locally: file.path
-            // If uploading to Supabase Storage / S3, you'd upload here and set the returned URL
-            aadharFileUrl = file.path; 
-        }
-
+    async create(userData) {
         const { data, error } = await this.supabase
             .from('partners')
             .insert([{
@@ -25,11 +17,11 @@ class UserModel {
                 email: userData.email,
                 password: userData.password, // already hashed!
                 categories: userData.categories || null,
-                price_range: userData.priceRange || null,
+                price_range: userData.price_range || null,
                 status: userData.status || 1,  // default: pending
-                aadhar_file_url: aadharFileUrl,
-                portfolio_url: userData.portfolioUrl || null,
-                service_description: userData.serviceDescription || null,
+                aadhar_file_url: userData.aadhar_file_url || null,
+                portfolio_url: userData.portfolio_url || null,
+                service_description: userData.service_description || null,
                 phone: userData.phone || null,
                 comment: userData.comment || null,
                 created_at: new Date().toISOString(),
